@@ -1,0 +1,27 @@
+import { useState } from "react";
+import BarChart from "./components/BarChart";
+import Nav from "./components/Nav";
+import ScatterPlot from "./components/ScatterPlot";
+
+const Chart = ({ value }) => {
+  switch (value) {
+    case 0:
+      return <BarChart />;
+    case 1:
+      return <ScatterPlot />;
+    default:
+      return null;
+  }
+};
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  return (
+    <>
+      <Nav value={currentPage} setValue={setCurrentPage} />
+      <Chart value={currentPage} />
+    </>
+  );
+};
+
+export default App;
