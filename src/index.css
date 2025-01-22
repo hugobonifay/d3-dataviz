@@ -36,18 +36,26 @@ body {
 .root {
     width: 100%;
     height: 100%;
-    display: flex;
+    padding-top: 75px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
-.container {
-    width: 880px
-}
+.container {}
 
 .title {
-    text-align: center;
+    /* text-align: center; */
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    /* text-align: center; */
     margin: 0 0 10px 0;
     text-transform: uppercase;
 }
@@ -57,6 +65,7 @@ body {
     border: 2px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    width: fit-content;
 }
 
 .bar:hover {
@@ -65,10 +74,10 @@ body {
 
 .description {
     margin-top: 10px;
-    text-align: end;
+    /* text-align: end;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-end; */
 }
 
 .description p {
@@ -81,13 +90,14 @@ body {
 
 /* Scatter Plot */
 
-.subtitle {
-    text-align: center;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-}
-
 .dot {
     fill-opacity: 0.5;
     stroke-opacity: 1;
+}
+
+/* Heatmap */
+
+.cell:hover {
+    stroke: black;
+    stroke-width: 2px;
 }
