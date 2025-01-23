@@ -2,6 +2,7 @@ const nav = [
   { name: "Bar Chart", value: 0 },
   { name: "Scatter Plot", value: 1 },
   { name: "Heatmap", value: 2 },
+  { name: "Choropleth Map", value: 3 },
 ];
 
 const Nav = ({ value, setValue }) => {

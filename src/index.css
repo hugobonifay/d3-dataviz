@@ -88,6 +88,10 @@ body {
     font-style: italic;
 }
 
+.tooltip p {
+    margin: 0
+}
+
 /* Scatter Plot */
 
 .dot {

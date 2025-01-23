@@ -7,8 +7,6 @@ const Heatmap = () => {
   const createChart = (data) => {
     d3.select(container.current).selectAll("*").remove();
 
-    console.log(data.monthlyVariance);
-
     d3.select(container.current)
       .append("h1")
       .attr("id", "title")
@@ -70,8 +68,6 @@ const Heatmap = () => {
     const yDomain = Array.from(new Set(dataReady.map((d) => d.month))).sort(
       (a, b) => b - a
     );
-
-    console.log(yDomain);
 
     const yScale = d3
       .scaleBand()

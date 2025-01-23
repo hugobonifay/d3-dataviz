@@ -3,6 +3,7 @@ import BarChart from "./components/BarChart";
 import Nav from "./components/Nav";
 import ScatterPlot from "./components/ScatterPlot";
 import Heatmap from "./components/Heatmap";
+import ChoroplethMap from "./components/ChoroplethMap";
 
 const Chart = ({ value }) => {
   switch (value) {
@@ -12,13 +13,15 @@ const Chart = ({ value }) => {
       return <ScatterPlot />;
     case 2:
       return <Heatmap />;
+    case 3:
+      return <ChoroplethMap />;
     default:
       return null;
   }
 };
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(3);
   return (
     <>
       <Nav value={currentPage} setValue={setCurrentPage} />
