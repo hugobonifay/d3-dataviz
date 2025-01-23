@@ -31,6 +31,8 @@ const ChoroplethMap = () => {
     const Im = new d3.InternMap(N.map((id, i) => [id, i]));
     const If = d3.map(features.features, (d) => d.id);
 
+    console.log(V);
+
     const color = d3.scaleQuantize(
       [
         d3.min(data, (d) => d.bachelorsOrHigher),
@@ -102,10 +104,7 @@ const ChoroplethMap = () => {
       .join("path")
       .attr("class", "county")
       .attr("data-fips", (d) => d.id)
-      .attr(
-        "data-education",
-        (d) => data.find((item) => item.fips === d.id)?.bachelorsOrHigher
-      )
+      .attr("data-education", (d, i) => V[Im.get(If[i])])
       .attr("fill", (d, i) => color(V[Im.get(If[i])]))
       .attr("d", path)
       .on("mouseover", showTooltip)
