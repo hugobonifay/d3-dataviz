@@ -31,8 +31,6 @@ const ChoroplethMap = () => {
     const Im = new d3.InternMap(N.map((id, i) => [id, i]));
     const If = d3.map(features.features, (d) => d.id);
 
-    console.log(V);
-
     const color = d3.scaleQuantize(
       [
         d3.min(data, (d) => d.bachelorsOrHigher),
