@@ -27,7 +27,7 @@ const Chart = ({ value }) => {
 };
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(4);
+  const [currentPage, setCurrentPage] = useState(0);
   return (
     <>
       <Nav value={currentPage} setValue={setCurrentPage} />
