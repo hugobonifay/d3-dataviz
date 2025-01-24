@@ -175,34 +175,36 @@ const Heatmap = () => {
     const legend = svg
       .append("g")
       .attr("id", "legend")
-      .attr("transform", (d) => `translate(${margin.left},0)`);
+      .attr(
+        "transform",
+        (d) => `translate(${margin.left},${h - margin.bottom / 2})`
+      );
 
-    const legendElementWidth = 40;
-    const legendHeight = 20;
-
-    const legendBins = [...Array(11).keys()].map(
+    const legendItems = [...Array(11).keys()].map(
       (x) => Math.round(d3.quantile(colorsDomain, x * 0.1) * 100) / 100
     );
+    const legendItemWidth = 40;
+    const legendItemHeight = 20;
 
     legend
       .selectAll("rect")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("rect")
-      .attr("x", (d, i) => legendElementWidth * i)
-      .attr("y", h - 2 * legendHeight)
-      .attr("width", legendElementWidth)
-      .attr("height", legendHeight)
+      .attr("x", (d, i) => legendItemWidth * i)
+      .attr("width", legendItemWidth)
+      .attr("height", legendItemHeight)
       .style("fill", (d) => colors(d));
 
     legend
       .selectAll("text")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("text")
-      .text((d) => "≥ " + d)
-      .attr("x", (d, i) => legendElementWidth * i)
-      .attr("y", h - legendHeight / 2)
+      .text((d) => d)
+      .attr("x", (d, i) => legendItemWidth * i + legendItemWidth)
+      .attr("y", legendItemHeight + 10)
+      .attr("text-anchor", "middle")
       .style("font-size", "9px")
       .style("fill", "#aaa");
   };

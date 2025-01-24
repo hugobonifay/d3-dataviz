@@ -24,13 +24,6 @@ const ChoroplethMap = () => {
         "Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)"
       );
 
-    const N = d3.map(data, (d) => d.fips);
-    const V = d3
-      .map(data, (d) => d.bachelorsOrHigher)
-      .map((d) => (d === null ? NaN : +d));
-    const Im = new d3.InternMap(N.map((id, i) => [id, i]));
-    const If = d3.map(features.features, (d) => d.id);
-
     const color = d3.scaleQuantize(
       [
         d3.min(data, (d) => d.bachelorsOrHigher),
@@ -102,8 +95,13 @@ const ChoroplethMap = () => {
       .join("path")
       .attr("class", "county")
       .attr("data-fips", (d) => d.id)
-      .attr("data-education", (d, i) => V[Im.get(If[i])])
-      .attr("fill", (d, i) => color(V[Im.get(If[i])]))
+      .attr(
+        "data-education",
+        (d) => data.find((item) => item.fips === d.id).bachelorsOrHigher
+      )
+      .attr("fill", (d) =>
+        color(data.find((item) => item.fips === d.id).bachelorsOrHigher)
+      )
       .attr("d", path)
       .on("mouseover", showTooltip)
       .on("mouseout", hideTooltip);
@@ -123,27 +121,25 @@ const ChoroplethMap = () => {
       .append("g")
       .attr("class", "legend")
       .attr("id", "legend")
-      .attr("transform", (d) => `translate(${400}, ${-570})`);
+      .attr("transform", (d) => `translate(${width / 2 - 50}, ${0})`);
 
-    const legendElementWidth = 70;
-    const legendHeight = 15;
-
-    const legendBins = color.range();
+    const legendItems = color.range();
+    const legendItemWidth = 70;
+    const legendItemHeight = 15;
 
     legend
       .selectAll("rect")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("rect")
-      .attr("x", (d, i) => legendElementWidth * i)
-      .attr("y", height - 2 * legendHeight)
-      .attr("width", legendElementWidth)
-      .attr("height", legendHeight)
+      .attr("x", (d, i) => legendItemWidth * i)
+      .attr("width", legendItemWidth)
+      .attr("height", legendItemHeight)
       .attr("fill", (d) => d);
 
     legend
       .selectAll("text")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("text")
       .text((d, i) => {
@@ -151,8 +147,8 @@ const ChoroplethMap = () => {
         const format = d3.format(".0%");
         return format(+extent[0] / 100) + " - " + format(+extent[1] / 100);
       })
-      .attr("x", (d, i) => legendElementWidth * i + 14)
-      .attr("y", height - 5)
+      .attr("x", (d, i) => legendItemWidth * i + 15)
+      .attr("y", legendItemHeight + 10)
       .style("font-size", "10px")
       .style("font-weight", "500")
       .style("fill", "#000");

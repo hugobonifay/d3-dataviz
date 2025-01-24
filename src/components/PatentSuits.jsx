@@ -206,32 +206,36 @@ const PatentSuits = () => {
       .append("g")
       .attr("class", "legend")
       .attr("id", "legend")
-      .attr("transform", (d) => `translate(${-450}, ${-825})`);
+      .attr(
+        "transform",
+        (d) => `translate(${-width / 2 + 30}, ${-height / 2 + 30})`
+      );
 
-    const legendElementWidth = 20;
-    const legendHeight = 20;
-
-    const legendBins = types.map((d) => ({ type: d, color: color(d) }));
+    const legendItems = types.map((d) => ({ type: d, color: color(d) }));
+    const legendItemWidth = 15;
+    const legendItemHeight = 15;
 
     legend
       .selectAll("rect")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("rect")
-      .attr("x", 0)
-      .attr("y", (d, i) => height - 2 * legendHeight + i * legendHeight)
-      .attr("width", legendElementWidth)
-      .attr("height", legendHeight)
+      .attr("y", (d, i) => i * legendItemHeight + i * 5)
+      .attr("width", legendItemWidth)
+      .attr("height", legendItemHeight)
       .attr("fill", (d) => d.color);
 
     legend
       .selectAll("text")
-      .data(legendBins)
+      .data(legendItems)
       .enter()
       .append("text")
       .text((d, i) => d.type)
-      .attr("x", (d, i) => legendElementWidth + 4)
-      .attr("y", (d, i) => height - 27 + i * legendHeight)
+      .attr("x", (d, i) => legendItemWidth + 4)
+      .attr(
+        "y",
+        (d, i) => i * legendItemHeight + legendItemHeight / 2 + 3 + i * 5
+      )
       .style("font-size", "10px")
       .style("font-weight", "500")
       .style("fill", "#000");
