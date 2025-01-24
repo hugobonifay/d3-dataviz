@@ -112,3 +112,31 @@ body {
     width: 100%;
     max-width: 1200px;
 }
+
+/* Treemap Diagram */
+
+.treemap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.treemap-tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.treemap-tabs button {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.legend {
+    width: fit-content;
+    margin: 0 auto;
+}
