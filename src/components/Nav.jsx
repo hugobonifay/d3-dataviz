@@ -3,6 +3,8 @@ const nav = [
   { name: "Scatter Plot", value: 1 },
   { name: "Heatmap", value: 2 },
   { name: "Choropleth Map", value: 3 },
+  { name: "Treemap Diagram", value: 4 },
+  { name: "Patent Suits", value: 5 },
 ];
 
 const Nav = ({ value, setValue }) => {

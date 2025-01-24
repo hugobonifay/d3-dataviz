@@ -4,6 +4,8 @@ import Nav from "./components/Nav";
 import ScatterPlot from "./components/ScatterPlot";
 import Heatmap from "./components/Heatmap";
 import ChoroplethMap from "./components/ChoroplethMap";
+import PatentSuits from "./components/PatentSuits";
+import TreemapDiagram from "./components/TreemapDiagram";
 
 const Chart = ({ value }) => {
   switch (value) {
@@ -15,13 +17,17 @@ const Chart = ({ value }) => {
       return <Heatmap />;
     case 3:
       return <ChoroplethMap />;
+    case 4:
+      return <TreemapDiagram />;
+    case 5:
+      return <PatentSuits />;
     default:
       return null;
   }
 };
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(5);
   return (
     <>
       <Nav value={currentPage} setValue={setCurrentPage} />
