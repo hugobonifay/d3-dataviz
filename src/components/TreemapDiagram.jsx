@@ -49,7 +49,7 @@ const TreemapDiagram = () => {
       .attr("viewBox", [0, 0, width, height])
       .attr("style", "width: 100%; height: auto; height: intrinsic;");
 
-    const treemap = d3.treemap().size([width, height]).padding(0).round(true);
+    const treemap = d3.treemap().size([width, height]);
 
     const root = d3
       .hierarchy(data)
