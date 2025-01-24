@@ -146,13 +146,10 @@ const TreemapDiagram = () => {
     groups
       .append("text")
       .selectAll("tspan")
-      .data((d) => d.data.name.split(/(?=[A-Z][^A-Z])/g).concat(d.value))
+      .data((d) => d.data.name.split(/(?=[A-Z][^A-Z])/g))
       .join("tspan")
       .attr("x", 3)
-      .attr(
-        "y",
-        (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`
-      )
+      .attr("y", (d, i) => 13 + i * 10)
       .attr("font-size", "10px")
       .text((d) => d);
 
